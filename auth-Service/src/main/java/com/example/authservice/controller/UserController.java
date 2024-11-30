@@ -11,11 +11,10 @@ import org.springframework.web.bind.annotation.*;
 
 @RestController
 @RequestMapping(value = "/verif")
-@NoArgsConstructor
 @AllArgsConstructor
 public class UserController {
 
-    private UserService userService;
+    private final UserService userService;
 
     @PostMapping(value = "/register")
     public ResponseEntity<Object> register(@Valid @RequestBody UserRequest userRequest) {

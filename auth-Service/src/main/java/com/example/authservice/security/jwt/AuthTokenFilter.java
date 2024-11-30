@@ -1,7 +1,5 @@
 package com.example.authservice.security.jwt;
 
-
-//import com.service.beauth.security.service.UserDetailsServiceImpl;
 import jakarta.servlet.FilterChain;
 import jakarta.servlet.ServletException;
 import jakarta.servlet.http.HttpServletRequest;

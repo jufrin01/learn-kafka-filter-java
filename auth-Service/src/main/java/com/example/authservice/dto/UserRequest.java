@@ -2,9 +2,13 @@ package com.example.authservice.dto;
 
 import com.example.authservice.constant.Constant;
 import jakarta.validation.constraints.*;
+import lombok.AllArgsConstructor;
 import lombok.Data;
+import lombok.NoArgsConstructor;
 
 @Data
+@NoArgsConstructor
+@AllArgsConstructor
 public class UserRequest {
 
     @NotBlank(message = "Name is mandatory, please fill it!")
