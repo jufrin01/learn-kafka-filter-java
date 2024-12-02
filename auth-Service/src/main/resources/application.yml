@@ -3,6 +3,8 @@ spring:
     name: auth
   config:
     import: optional:configserver:http://localhost:8888
+  jpa:
+    show-sql: true
 
 user:
   role: Seller|Buyer
@@ -11,3 +13,26 @@ user:
 jwt:
   secret: ======================Ll4Kcolnu=lL4dor7oh===========================
   expirationMs: 900000 # 15 minutes
+#jpa:
+#  hibernate:
+#    ddl-auto: update
+#    show-sql: true
+#  properties:
+#    hibernate:
+#      format_sql: true
+
+#logging:
+#  level:
+#    org:
+#      springframework:
+#        web: DEBUG
+#        orm: TRACE
+#        data: DEBUG
+#      hibernate: ERROR
+#    com:
+#      example:
+#        authservice: DEBUG
+#    root: INFO
+
+
+

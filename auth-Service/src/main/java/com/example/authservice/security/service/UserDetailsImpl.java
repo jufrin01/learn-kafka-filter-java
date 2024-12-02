@@ -8,8 +8,7 @@ import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
 import java.util.*;
 
-@NoArgsConstructor
-@AllArgsConstructor
+
 public class UserDetailsImpl implements UserDetails {
 
     private static final long serialVersionUID = 1L;
@@ -21,6 +20,13 @@ public class UserDetailsImpl implements UserDetails {
     private String password;
 
     private String role;
+
+    public UserDetailsImpl(String id, String username, String password, String role) {
+        this.id = id;
+        this.username = username;
+        this.password = password;
+        this.role = role;
+    }
 
     @Override
     public Collection<? extends GrantedAuthority> getAuthorities() {
@@ -38,11 +44,7 @@ public class UserDetailsImpl implements UserDetails {
     public String getId() {
         return id;
     }
-
-    public String getRole() {
-        return role;
-    }
-
+    public String getRole() { return role; }
     @Override
     public String getPassword() {
         return password;
@@ -72,4 +74,15 @@ public class UserDetailsImpl implements UserDetails {
     public boolean isEnabled() {
         return true;
     }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o)
+            return true;
+        if (o == null || getClass() != o.getClass())
+            return false;
+        UserDetailsImpl user = (UserDetailsImpl) o;
+        return Objects.equals(id, user.id);
+    }
+
 }

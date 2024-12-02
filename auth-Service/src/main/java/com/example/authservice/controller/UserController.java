@@ -4,17 +4,18 @@ import com.example.authservice.dto.LoginRequest;
 import com.example.authservice.dto.UserRequest;
 import com.example.authservice.service.UserService;
 import jakarta.validation.Valid;
-import lombok.AllArgsConstructor;
-import lombok.NoArgsConstructor;
+import lombok.extern.slf4j.Slf4j;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 @RestController
+@Slf4j
 @RequestMapping(value = "/verif")
-@AllArgsConstructor
 public class UserController {
 
-    private final UserService userService;
+    @Autowired
+    private  UserService userService;
 
     @PostMapping(value = "/register")
     public ResponseEntity<Object> register(@Valid @RequestBody UserRequest userRequest) {

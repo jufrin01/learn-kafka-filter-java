@@ -12,7 +12,6 @@ import com.example.authservice.exception.NotFoundException;
 import com.example.authservice.model.User;
 import com.example.authservice.repository.UserRepository;
 import com.example.authservice.security.jwt.JwtUtils;
-import lombok.AllArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
@@ -28,7 +27,6 @@ import java.util.Objects;
 
 @Service
 @Slf4j
-@AllArgsConstructor
 public class UserService {
 
     private final PasswordEncoder passwordEncoder;
@@ -37,9 +35,25 @@ public class UserService {
     private final JwtUtils jwtUtils;
     private final AppConfig appConfig;
 
+    public UserService(
+            PasswordEncoder passwordEncoder,
+            UserRepository userRepository,
+            AuthenticationManager authenticationManager,
+            JwtUtils jwtUtils,
+            AppConfig appConfig
+    ) {
+        this.passwordEncoder = passwordEncoder;
+        this.userRepository = userRepository;
+        log.info("UserRepository initialized: {}", userRepository);
+        this.authenticationManager = authenticationManager;
+        this.jwtUtils = jwtUtils;
+        this.appConfig = appConfig;
+    }
+
     @Transactional
     public BaseResponse<Object> register(UserRequest userRequest) {
         User user = userRepository.findByUsername(userRequest.getUsername());
+
         if (Objects.nonNull(user)) {
             throw new DataExistException(Constant.Message.EXIST_DATA_MESSAGE);
         }
@@ -95,7 +109,7 @@ public class UserService {
                 .userId(user.getId())
                 .username(user.getUsername())
                 .accessToken(jwt)
-                .tokenType("Bearer")
+                .tokenType("Bearer ")
                 .expiresIn(appConfig.getJwtExpirationMs())
                 .role(user.getRole())
                 .build();

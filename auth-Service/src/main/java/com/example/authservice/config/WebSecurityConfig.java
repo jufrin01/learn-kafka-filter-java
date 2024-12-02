@@ -25,13 +25,16 @@ import org.springframework.web.cors.UrlBasedCorsConfigurationSource;
 
 @Configuration
 @EnableMethodSecurity
-@NoArgsConstructor
-@AllArgsConstructor
 public class WebSecurityConfig {
 
-    @Autowired
-    private UserDetailsServiceImpl userDetailsServiceImpl;
-    private AuthEntryPointJwt authEntryPointJwt;
+
+    public WebSecurityConfig(UserDetailsServiceImpl userDetailsServiceImpl, AuthEntryPointJwt authEntryPointJwt) {
+        this.userDetailsServiceImpl = userDetailsServiceImpl;
+        this.authEntryPointJwt = authEntryPointJwt;
+    }
+
+    private final  UserDetailsServiceImpl userDetailsServiceImpl;
+    private final AuthEntryPointJwt authEntryPointJwt;
 
     @Bean
     public AuthTokenFilter authenticationJwtTokenFilter() {
@@ -41,7 +44,7 @@ public class WebSecurityConfig {
     @Bean
     public DaoAuthenticationProvider authenticationProvider() {
         DaoAuthenticationProvider authenticationProvider = new DaoAuthenticationProvider();
-        authenticationProvider.setUserDetailsService(userDetailsServiceImpl);  // Pastikan ini sudah diset
+        authenticationProvider.setUserDetailsService(userDetailsServiceImpl);
         authenticationProvider.setPasswordEncoder(passwordEncoder());
         return authenticationProvider;
     }

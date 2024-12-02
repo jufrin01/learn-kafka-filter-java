@@ -1,17 +1,12 @@
 package com.example.authservice.dto;
 
 
-
-import com.example.authservice.constant.*;
+import com.example.authservice.constant.Constant;
 import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.NotNull;
 import jakarta.validation.constraints.Pattern;
-import lombok.AllArgsConstructor;
 import lombok.Data;
-import lombok.NoArgsConstructor;
 
-@NoArgsConstructor
-@AllArgsConstructor
 @Data
 public class LoginRequest {
 

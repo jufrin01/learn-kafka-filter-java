@@ -19,7 +19,7 @@ public final class Constant {
 
     public static final class Response {
         private Response() {
-            // Private constructor to prevent instantiation
+
         }
 
         public static final int SUCCESS_CODE = 200;
@@ -29,7 +29,7 @@ public final class Constant {
 
     public static final class Message {
         private Message() {
-            // Private constructor to prevent instantiation
+
         }
 
         public static final String EXIST_DATA_MESSAGE = "Data already exists";
@@ -41,7 +41,7 @@ public final class Constant {
 
     public static final class Regex {
         private Regex() {
-            // Private constructor to prevent instantiation
+
         }
 
         public static final String NUMERIC = "\\d+";

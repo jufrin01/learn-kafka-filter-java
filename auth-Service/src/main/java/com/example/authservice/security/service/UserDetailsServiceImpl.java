@@ -1,14 +1,9 @@
 package com.example.authservice.security.service;
 
-//import com.service.beauth.constant.Constant;
-//import com.service.beauth.entity.User;
-//import com.service.beauth.repository.UserRepository;
 import com.example.authservice.constant.Constant;
 import com.example.authservice.model.User;
 import com.example.authservice.repository.UserRepository;
 import jakarta.transaction.Transactional;
-import lombok.AllArgsConstructor;
-import lombok.NoArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
@@ -18,11 +13,14 @@ import org.springframework.stereotype.Service;
 import java.util.Objects;
 
 @Service
-@AllArgsConstructor
-@NoArgsConstructor
 public class UserDetailsServiceImpl implements UserDetailsService {
 
     private UserRepository userRepository;
+
+    @Autowired
+    public UserDetailsServiceImpl(UserRepository userRepository) {
+        this.userRepository = userRepository;
+    }
 
     @Override
     @Transactional
